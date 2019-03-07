@@ -42,9 +42,9 @@ std::unique_ptr<std::vector<float>> PrecomputeValueToBoundedFloat(
   auto result = absl::make_unique<std::vector<float>>();
   // Repeat two times, so that both values with and without the update marker
   // can be converted to a probability.
-  const int repeat_times = 2;
-  result->reserve(repeat_times * kNumberOfValues);
-  for (int repeat = 0; repeat != repeat_times; ++repeat) {
+  constexpr int kRepetitionCount = 2;
+  result->reserve(kRepetitionCount * kNumberOfValues);
+  for (int repeat = 0; repeat != kRepetitionCount; ++repeat) {
     for (int value = 0; value != kNumberOfValues; ++value) {
       result->push_back(SlowValueToBoundedFloat(
           value, unknown_value, unknown_result, lower_bound, upper_bound));
